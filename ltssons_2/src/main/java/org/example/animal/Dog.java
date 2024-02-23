@@ -1,8 +1,9 @@
 package org.example.animal;
 
+/**
+ * Класс для Animal сущности Dog
+ * @autor Самойлов Максим
+ * @version 1.1
+ */
 public class Dog extends Pet {
-
-    public Dog(String breed, String name, Double cost, String character) {
-        super(breed, name, cost, character);
-    }
 }

@@ -1,7 +1,9 @@
 package org.example.animal;
 
-public class Shark extends Predator{
-    public Shark(String breed, String name, Double cost, String character) {
-        super(breed, name, cost, character);
-    }
+/**
+ * Класс для Animal сущности Shark
+ * @autor Самойлов Максим
+ * @version 1.1
+ */
+public class Shark extends Predator {
 }
