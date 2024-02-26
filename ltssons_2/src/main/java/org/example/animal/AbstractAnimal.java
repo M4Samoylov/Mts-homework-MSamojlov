@@ -47,4 +47,12 @@ public abstract class AbstractAnimal implements Animal {
     public void setCharacter(String character) {
         this.character = character;
     }
+
+    @Override
+    public String toString() {
+        return breed + " | " +
+                name + " | " +
+                cost + " | " +
+                character + "\n";
+    }
 }
