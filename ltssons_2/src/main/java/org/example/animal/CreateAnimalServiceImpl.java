@@ -19,7 +19,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
         Pet pet = new Pet();
         Predator predator = new Predator();
 
-        System.out.println("--------START createAnimal() for(i < N)");
+        System.out.println("--------START Создание " + N + " уникальных животных");
         for (int i = 0; i < N; i++) {
             double rand = new Random().nextDouble();
             if (i % 2 == 0) {
@@ -27,6 +27,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                 double end = 10;
                 double result = start + (rand * (end - start));
 
+                System.out.println("--------Создаётся животное класса Pet");
                 pet.setBreed(BreedPet.randomBreedPet());
                 pet.setName(Name.randomName());
                 pet.setCost(result);
@@ -39,6 +40,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                 double end = 20;
                 double result = start + (rand * (end - start));
 
+                System.out.println("--------Создаётся животное класса Predator");
                 predator.setBreed(BreedPredator.randomBreedPredator());
                 predator.setName(Name.randomName());
                 predator.setCost(result);
@@ -48,7 +50,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                 System.out.print(predator);
             }
         }
-        System.out.println("--------END createAnimal() for(i < N)" + "\n");
+        System.out.println("--------END Созданы " + N + " уникальных животных" + "\n");
     }
 
     /**
@@ -65,11 +67,12 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
         Random rand = new Random();
         int i = 0;
 
-        System.out.println("--------START createAnimal() do-while(i < 10)");
+        System.out.println("--------START Создание уникальных животных");
         do {
             switch (i) {
                 case 0:
                 case 1:
+                    System.out.println("--------Создаётся животное класса Cat");
                     cat.setBreed(BreedPet.randomBreedPet());
                     cat.setName(Name.randomName());
                     cat.setCost(cat.cost[rand.nextInt(cat.cost.length)]);
@@ -80,6 +83,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                     break;
                 case 2:
                 case 3:
+                    System.out.println("--------Создаётся животное класса Wolf");
                     wolf.setBreed(BreedPredator.randomBreedPredator());
                     wolf.setName(Name.randomName());
                     wolf.setCost(wolf.cost[rand.nextInt(wolf.cost.length)]);
@@ -90,6 +94,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                     break;
                 case 4:
                 case 5:
+                    System.out.println("--------Создаётся животное класса Shark");
                     shark.setBreed(BreedPredator.randomBreedPredator());
                     shark.setName(Name.randomName());
                     shark.setCost(shark.cost[rand.nextInt(shark.cost.length)]);
@@ -100,6 +105,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                     break;
                 case 6:
                 case 7:
+                    System.out.println("--------Создаётся животное класса Fox");
                     fox.setBreed(BreedPredator.randomBreedPredator());
                     fox.setName(Name.randomName());
                     fox.setCost(fox.cost[rand.nextInt(fox.cost.length)]);
@@ -110,6 +116,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                     break;
                 case 8:
                 case 9:
+                    System.out.println("--------Создаётся животное класса Dog");
                     dog.setBreed(BreedPet.randomBreedPet());
                     dog.setName(Name.randomName());
                     dog.setCost(fox.cost[rand.nextInt(fox.cost.length)]);
@@ -121,6 +128,6 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
             }
             i++;
         } while (i < 10);
-        System.out.println("--------END createAnimal() do-while(i < 10)" + "\n");
+        System.out.println("--------END Созданы " + i + " уникальных животных" + "\n");
     }
 }

@@ -21,10 +21,11 @@ public interface CreateAnimalService {
         Predator predator = new Predator();
         int i = 0;
 
-        System.out.println("--------START createAnimal() while(i < 10)");
+        System.out.println("--------START Создание уникальных животных");
         while (i < 10) {
             Random rand = new Random();
             if (i < 5) {
+                System.out.println("--------Создаётся животное класса Pet");
                 pet.setBreed(BreedPet.randomBreedPet());
                 pet.setName(Name.randomName());
                 pet.setCost(pet.cost[rand.nextInt(pet.cost.length)]);
@@ -33,6 +34,7 @@ public interface CreateAnimalService {
                 System.out.print(i + " | ");
                 System.out.println(pet);
             } else {
+                System.out.println("--------Создаётся животное класса Predator");
                 predator.setBreed(BreedPredator.randomBreedPredator());
                 predator.setName(Name.randomName());
                 predator.setCost(predator.cost[rand.nextInt(predator.cost.length)]);
@@ -43,6 +45,6 @@ public interface CreateAnimalService {
             }
             i++;
         }
-        System.out.println("--------END createAnimal() while(i < 10)" + "\n");
+        System.out.println("--------END Созданы " + i + " уникальных животных" + "\n");
     }
 }
