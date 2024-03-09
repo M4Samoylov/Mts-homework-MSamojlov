@@ -1,5 +1,7 @@
 package org.example.animal;
 
+import java.time.LocalDate;
+
 /**
  * Интерфейс возможных методов для сущности Animal
  * @autor Самойлов Максим
@@ -10,4 +12,5 @@ public interface Animal {
     String getName();
     Double getCost();
     String getCharacter();
+    LocalDate getBirthDate();
 }

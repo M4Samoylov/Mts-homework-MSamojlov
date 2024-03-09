@@ -1,8 +1,7 @@
 package org.example;
 
-import org.example.animal.*;
-
-import java.util.Random;
+import org.example.animal.CreateAnimalService;
+import org.example.animal.CreateAnimalServiceImpl;
 
 public class Main {
 

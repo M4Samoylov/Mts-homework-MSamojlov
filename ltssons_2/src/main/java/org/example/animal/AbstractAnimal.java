@@ -1,16 +1,22 @@
 package org.example.animal;
 
+import org.example.animal.helpers.FormatterLocalDate;
+import org.example.animal.helpers.RandomLocalDate;
+
+import java.time.LocalDate;
+
 /**
  * Абстрактный класс параметров сущности Animal
  * @autor Самойлов Максим
  * @version 1.1
  */
-public abstract class AbstractAnimal implements Animal {
+public abstract class AbstractAnimal extends RandomLocalDate implements Animal {
 
     protected String breed; //порода
     protected String name; // имя
     protected Double cost; //цена в магазине
     protected String character; //характер
+    protected LocalDate birthDate; //дата рождения
 
     @Override
     public String getBreed() {
@@ -32,6 +38,11 @@ public abstract class AbstractAnimal implements Animal {
         return character;
     }
 
+    @Override
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
     public void setBreed(String breed) {
         this.breed = breed;
     }
@@ -48,11 +59,16 @@ public abstract class AbstractAnimal implements Animal {
         this.character = character;
     }
 
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
     @Override
     public String toString() {
         return breed + " | " +
                 name + " | " +
                 cost + " | " +
-                character + "\n";
+                character + " | " +
+                FormatterLocalDate.localDateToString(birthDate) + "\n";
     }
 }
