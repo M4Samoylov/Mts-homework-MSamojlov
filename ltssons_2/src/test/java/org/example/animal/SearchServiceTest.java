@@ -1,5 +1,6 @@
 package org.example.animal;
 
+import org.example.animal.Exception.InvalidAnimalBirthDateException;
 import org.example.animal.Exception.InvalidAnimalException;
 import org.example.animal.enumAnimal.TypeAnimal;
 import org.example.animal.pet.Pet;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SearchServiceTest {
 
-    SearchService searchService = new SearchServiceImpl();
+    SearchServiceImpl searchService = new SearchServiceImpl();
     Pet pet = new Pet();
 
     @BeforeEach
@@ -44,13 +45,12 @@ class SearchServiceTest {
     @DisplayName("Проверка метода checkLeapYearAnimal, BirthDate = null, Негативный тест")
     void checkNullBirthDateAnimal() {
         pet.setBirthDate(null);
-        assertThrows(InvalidAnimalException.class, () -> searchService.checkLeapYearAnimal(pet));
+        assertThrows(InvalidAnimalBirthDateException.class, () -> searchService.checkLeapYearAnimal(pet));
     }
 
     @Test
-    @DisplayName("Проверка метода checkLeapYearAnimal, Name = null, Негативный тест")
-    void checkNullNameAnimal() {
-        pet.setName(null);
-        assertThrows(InvalidAnimalException.class, () -> searchService.checkLeapYearAnimal(pet));
+    @DisplayName("Проверка метода checkLeapYearAnimal, передаваемый объект abstractAnimal = null, Негативный тест")
+    void checkNullAnimal() {
+        assertThrows(InvalidAnimalException.class, () -> searchService.checkLeapYearAnimal(null));
     }
 }

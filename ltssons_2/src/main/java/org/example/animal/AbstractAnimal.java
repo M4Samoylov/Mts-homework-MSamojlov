@@ -1,6 +1,6 @@
 package org.example.animal;
 
-import org.example.animal.helpers.FormatterLocalDate;
+import org.example.animal.helpers.LocalDateFormatter;
 import org.example.animal.helpers.RandomLocalDate;
 
 import java.time.LocalDate;
@@ -69,6 +69,6 @@ public abstract class AbstractAnimal extends RandomLocalDate implements Animal {
                 name + " | " +
                 cost + " | " +
                 character + " | " +
-                FormatterLocalDate.localDateToString(birthDate) + "\n";
+                LocalDateFormatter.localDateToStringFormat(birthDate, "dd-MM-yyyy") + "\n";
     }
 }

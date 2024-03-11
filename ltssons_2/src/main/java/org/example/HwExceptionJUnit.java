@@ -23,14 +23,8 @@ public class HwExceptionJUnit {
 
         try {
             searchServiceImpl.checkLeapYearAnimal(dog);
-        }
-        catch (InvalidAnimalBirthDateException | InvalidAnimalException ex) {
-            try {
-                throw new InvalidAnimalBirthDateException("У животного " + dog.getClass().getSimpleName().toUpperCase() +
-                        " не указана дата его рождения");
-            } catch (Exception exception) {
-                throw new InvalidAnimalException(exception);
-            }
+        } catch (InvalidAnimalBirthDateException ex) {
+            throw new InvalidAnimalException(ex);
         }
     }
 }
