@@ -1,6 +1,13 @@
 package org.example.animal;
 
 import org.example.animal.enumAnimal.*;
+import org.example.animal.pet.Cat;
+import org.example.animal.pet.Dog;
+import org.example.animal.pet.Pet;
+import org.example.animal.predator.Fox;
+import org.example.animal.predator.Predator;
+import org.example.animal.predator.Shark;
+import org.example.animal.predator.Wolf;
 
 import java.util.Random;
 
@@ -12,6 +19,38 @@ import java.util.Random;
 public class CreateAnimalServiceImpl implements CreateAnimalService {
 
     /**
+     * Функция создания животного.
+     * Возвращает объект животного
+     */
+    public AbstractAnimal createPetAnimal(AbstractAnimal abstractAnimal, TypeAnimal animal) {
+        Random rand = new Random();
+        Pet pet = new Pet();
+        Predator predator = new Predator();
+
+        switch (animal){
+            case PET: {
+                abstractAnimal.setBreed(BreedPet.randomBreedPet());
+                abstractAnimal.setName(Name.randomName());
+                abstractAnimal.setCost(pet.cost[rand.nextInt(pet.cost.length)]);
+                abstractAnimal.setCharacter(CharacterPet.randomCharacterPet());
+                abstractAnimal.setBirthDate(pet.getRandomDate());
+                break;
+            }
+            case PREDATOR: {
+                abstractAnimal.setBreed(BreedPredator.randomBreedPredator());
+                abstractAnimal.setName(Name.randomName());
+                abstractAnimal.setCost(predator.cost[rand.nextInt(predator.cost.length)]);
+                abstractAnimal.setCharacter(CharacterPredator.randomCharacterPredator());
+                abstractAnimal.setBirthDate(predator.getRandomDate());
+                break;
+            }
+            default:
+                System.out.println("Передан неизвестный тип животного: " + animal);
+        }
+        return abstractAnimal;
+    }
+
+    /**
      * Функция создания животных циклом for.
      * Выводит в консоль породу/имя/цену/характер животного
      */
@@ -19,7 +58,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
         Pet pet = new Pet();
         Predator predator = new Predator();
 
-        System.out.println("--------START Создание " + N + " уникальных животных");
+        System.out.println(">>> START Создание " + N + " уникальных животных");
         for (int i = 0; i < N; i++) {
             double rand = new Random().nextDouble();
             if (i % 2 == 0) {
@@ -32,6 +71,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                 pet.setName(Name.randomName());
                 pet.setCost(result);
                 pet.setCharacter(CharacterPet.randomCharacterPet());
+                pet.setBirthDate(pet.getRandomDate());
 
                 System.out.print(i + " | ");
                 System.out.print(pet);
@@ -45,12 +85,13 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                 predator.setName(Name.randomName());
                 predator.setCost(result);
                 predator.setCharacter(CharacterPredator.randomCharacterPredator());
+                predator.setBirthDate(predator.getRandomDate());
 
                 System.out.print(i + " | ");
                 System.out.print(predator);
             }
         }
-        System.out.println("--------END Созданы " + N + " уникальных животных" + "\n");
+        System.out.println("<<< END Созданы " + N + " уникальных животных" + "\n");
     }
 
     /**
@@ -67,7 +108,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
         Random rand = new Random();
         int i = 0;
 
-        System.out.println("--------START Создание уникальных животных");
+        System.out.println(">>> START Создание уникальных животных 1");
         do {
             switch (i) {
                 case 0:
@@ -77,6 +118,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                     cat.setName(Name.randomName());
                     cat.setCost(cat.cost[rand.nextInt(cat.cost.length)]);
                     cat.setCharacter(CharacterPet.randomCharacterPet());
+                    cat.setBirthDate(cat.getRandomDate());
 
                     System.out.print(i + " | ");
                     System.out.print(cat);
@@ -88,6 +130,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                     wolf.setName(Name.randomName());
                     wolf.setCost(wolf.cost[rand.nextInt(wolf.cost.length)]);
                     wolf.setCharacter(CharacterPredator.randomCharacterPredator());
+                    wolf.setBirthDate(wolf.getRandomDate());
 
                     System.out.print(i + " | ");
                     System.out.print(wolf);
@@ -99,6 +142,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                     shark.setName(Name.randomName());
                     shark.setCost(shark.cost[rand.nextInt(shark.cost.length)]);
                     shark.setCharacter(CharacterPredator.randomCharacterPredator());
+                    shark.setBirthDate(shark.getRandomDate());
 
                     System.out.print(i + " | ");
                     System.out.print(shark);
@@ -110,6 +154,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                     fox.setName(Name.randomName());
                     fox.setCost(fox.cost[rand.nextInt(fox.cost.length)]);
                     fox.setCharacter(CharacterPredator.randomCharacterPredator());
+                    fox.setBirthDate(fox.getRandomDate());
 
                     System.out.print(i + " | ");
                     System.out.print(fox);
@@ -121,6 +166,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                     dog.setName(Name.randomName());
                     dog.setCost(fox.cost[rand.nextInt(fox.cost.length)]);
                     dog.setCharacter(CharacterPet.randomCharacterPet());
+                    dog.setBirthDate(dog.getRandomDate());
 
                     System.out.print(i + " | ");
                     System.out.print(dog);
@@ -128,6 +174,6 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
             }
             i++;
         } while (i < 10);
-        System.out.println("--------END Созданы " + i + " уникальных животных" + "\n");
+        System.out.println("<<< END Созданы " + i + " уникальных животных" + "\n");
     }
 }

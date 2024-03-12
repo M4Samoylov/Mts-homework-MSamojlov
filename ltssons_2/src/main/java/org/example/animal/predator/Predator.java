@@ -1,6 +1,6 @@
-package org.example.animal;
+package org.example.animal.predator;
 
-import java.util.Arrays;
+import org.example.animal.AbstractAnimal;
 
 /**
  * Класс для Animal сущности Predator

@@ -1,4 +1,4 @@
-package org.example.animal;
+package org.example.animal.predator;
 
 /**
  * Класс для Animal сущности Shark
