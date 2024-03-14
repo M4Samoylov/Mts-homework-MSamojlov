@@ -4,6 +4,7 @@ import org.example.animal.helpers.LocalDateFormatter;
 import org.example.animal.helpers.RandomLocalDate;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * Абстрактный класс параметров сущности Animal
@@ -61,6 +62,10 @@ public abstract class AbstractAnimal extends RandomLocalDate implements Animal {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public int getAge() {
+        return Period.between(getBirthDate(), LocalDate.now()).getYears();
     }
 
     @Override

@@ -1,12 +1,11 @@
 package org.example;
 
-import org.example.animal.Animal;
+import org.example.animal.AbstractAnimal;
 import org.example.animal.AnimalRepositoryImpl;
 import org.example.animal.CreateAnimalServiceImpl;
 import org.example.animal.Exception.InvalidAnimalException;
 
 import java.util.List;
-import java.util.Map;
 
 public class HwCollections {
 
@@ -15,8 +14,11 @@ public class HwCollections {
         CreateAnimalServiceImpl createAnimalServiceImpl = new CreateAnimalServiceImpl();
         AnimalRepositoryImpl animalRepository = new AnimalRepositoryImpl();
 
-        Map<String, List<Animal>> animals = createAnimalServiceImpl.createMapAnimals(4);
-//        animalRepository.findLeapYearNames(animals.get());
+        List<AbstractAnimal> animals = createAnimalServiceImpl.createListAnimals(20);
+
+        animalRepository.findLeapYearNames(animals);
+        animalRepository.findOlderAnimal(animals, 10);
+        animalRepository.findDuplicate(animals);
 
     }
 }
