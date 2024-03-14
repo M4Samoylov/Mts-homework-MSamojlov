@@ -9,7 +9,7 @@ import org.example.animal.predator.Predator;
 import org.example.animal.predator.Shark;
 import org.example.animal.predator.Wolf;
 
-import java.util.Random;
+import java.util.*;
 
 /**
  * Класс сервиса для создания Животных (do-while/for цикл)
@@ -17,6 +17,62 @@ import java.util.Random;
  * @version 1.1
  */
 public class CreateAnimalServiceImpl implements CreateAnimalService {
+
+    /**
+     * Функция создания животных циклом for.
+     * Выводит в консоль породу/имя/цену/характер животного
+     *
+     * @return Map<String, List<Animal>>
+     */
+    public Map<String, List<Animal>> createMapAnimals(int animalsCount) {
+        Map<String, List<Animal>> animals = new HashMap<>();
+
+        List<Animal> animalListPet = new ArrayList<>();
+        List<Animal> animalListPredator = new ArrayList<>();
+
+        for (int i = 0; i < animalsCount; i++) {
+            double rand = new Random().nextDouble();
+            if (i % 2 == 0) {
+                double start = 1;
+                double end = 10;
+                double result = start + (rand * (end - start));
+
+                Pet pet = new Pet();
+                pet.setBreed(BreedPet.randomBreedPet());
+                pet.setName(Name.randomName());
+                pet.setCost(result);
+                pet.setCharacter(CharacterPet.randomCharacterPet());
+                pet.setBirthDate(pet.getRandomDate());
+
+                animalListPet.add(pet);
+            } else {
+                double start = 11;
+                double end = 20;
+                double result = start + (rand * (end - start));
+
+                Predator predator = new Predator();
+                predator.setBreed(BreedPredator.randomBreedPredator());
+                predator.setName(Name.randomName());
+                predator.setCost(result);
+                predator.setCharacter(CharacterPredator.randomCharacterPredator());
+                predator.setBirthDate(predator.getRandomDate());
+
+                animalListPredator.add(predator);
+            }
+        }
+        animals.put(Pet.class.getSimpleName().toUpperCase(), animalListPet);
+        animals.put(Predator.class.getSimpleName().toUpperCase(), animalListPredator);
+        return animals;
+    }
+
+//    private AbstractAnimal setParams(AbstractAnimal animal) {
+//        Predator predator = new Predator();
+//        Pet pet = new Pet();
+//
+//        switch ()
+//
+//        return ;
+//    }
 
     /**
      * Функция создания животного.
@@ -108,7 +164,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
         Random rand = new Random();
         int i = 0;
 
-        System.out.println(">>> START Создание уникальных животных 1");
+        System.out.println(">>> START Создание уникальных животных");
         do {
             switch (i) {
                 case 0:
