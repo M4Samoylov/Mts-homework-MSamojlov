@@ -1,11 +1,6 @@
 package org.example.animal;
 
 import org.example.animal.Exception.InvalidAnimalException;
-import org.example.animal.pet.Cat;
-import org.example.animal.pet.Dog;
-import org.example.animal.predator.Fox;
-import org.example.animal.predator.Shark;
-import org.example.animal.predator.Wolf;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -22,6 +17,7 @@ public class AnimalRepositoryImpl implements AnimalRepository {
 
     /**
      * Функция для формирования Map животных рождённых в високосный год.
+     *
      * @return Map<String, LocalDate>
      */
     @Override
@@ -44,6 +40,7 @@ public class AnimalRepositoryImpl implements AnimalRepository {
     /**
      * Функция для формирования Map содержащим животных возраст которых > N.
      * Если нет подходящих под условие животных -> в Map будет содержать самое старое животное
+     *
      * @return Map<AbstractAnimal, Integer>
      */
     @Override
@@ -85,6 +82,7 @@ public class AnimalRepositoryImpl implements AnimalRepository {
 
     /**
      * Функция для формирования Map содержащим перечисления ключ - Тип животного, значение - количество дубликатов.
+     *
      * @return Map<AbstractAnimal, Integer>
      */
     @Override
@@ -95,40 +93,13 @@ public class AnimalRepositoryImpl implements AnimalRepository {
 
         Map<String, Integer> result = new HashMap<>();
 
-        int catCount = 0;
-        int dogCount = 0;
-        int foxCount = 0;
-        int sharkCount = 0;
-        int wolfCount = 0;
-
         for (AbstractAnimal animal : animals) {
-            if (animal instanceof Cat) {
-                catCount++;
-            } else if (animal instanceof Dog) {
-                dogCount++;
-            } else if (animal instanceof Fox) {
-                foxCount++;
-            } else if (animal instanceof Shark) {
-                sharkCount++;
-            } else if (animal instanceof Wolf) {
-                wolfCount++;
+            if (!result.containsKey(animal.getClass().getSimpleName())) {
+                result.put(animal.getClass().getSimpleName(), 1);
+            } else {
+                int s = result.get(animal.getClass().getSimpleName());
+                result.replace(animal.getClass().getSimpleName(), s, s + 1);
             }
-        }
-
-        if (catCount != 0) {
-            result.put(Cat.class.getSimpleName(), catCount);
-        }
-        if (dogCount != 0) {
-            result.put(Dog.class.getSimpleName(), dogCount);
-        }
-        if (foxCount != 0) {
-            result.put(Fox.class.getSimpleName(), foxCount);
-        }
-        if (sharkCount != 0) {
-            result.put(Shark.class.getSimpleName(), sharkCount);
-        }
-        if (wolfCount != 0) {
-            result.put(Wolf.class.getSimpleName(), wolfCount);
         }
 
         System.out.println(result);
