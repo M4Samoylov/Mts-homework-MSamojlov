@@ -94,11 +94,12 @@ public class AnimalRepositoryImpl implements AnimalRepository {
         Map<String, Integer> result = new HashMap<>();
 
         for (AbstractAnimal animal : animals) {
-            if (!result.containsKey(animal.getClass().getSimpleName())) {
-                result.put(animal.getClass().getSimpleName(), 1);
+            String name = animal.getClass().getSimpleName();
+            if (!result.containsKey(name)) {
+                result.put(name, 1);
             } else {
-                int s = result.get(animal.getClass().getSimpleName());
-                result.replace(animal.getClass().getSimpleName(), s, s + 1);
+                int value = result.get(name);
+                result.replace(name, value, value + 1);
             }
         }
 
