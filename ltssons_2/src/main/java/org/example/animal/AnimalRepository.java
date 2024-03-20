@@ -12,5 +12,11 @@ public interface AnimalRepository {
 
     Map<AbstractAnimal, Integer> findOlderAnimal(List<AbstractAnimal> animals, int N) throws InvalidAnimalException;
 
-    Map<String, Integer> findDuplicate(List<AbstractAnimal> animals) throws InvalidAnimalException;
+    Map<String, List<AbstractAnimal>> findDuplicate(List<AbstractAnimal> animals) throws InvalidAnimalException;
+
+    double findAverageAge(List<AbstractAnimal> animals) throws InvalidAnimalException;
+
+    List<AbstractAnimal> findOldAndExpensive(List<AbstractAnimal> animals) throws InvalidAnimalException;
+
+    List<String> findMinConstAnimals(List<AbstractAnimal> animals) throws InvalidAnimalException;
 }

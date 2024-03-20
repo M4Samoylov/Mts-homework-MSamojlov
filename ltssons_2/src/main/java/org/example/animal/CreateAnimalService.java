@@ -6,6 +6,8 @@ import org.example.animal.predator.Predator;
 
 import java.util.Random;
 
+import static org.example.animal.helpers.RandomLocalDate.getRandomDate;
+
 /**
  * Класс сервиса для создания Животных (while цикл)
  * @autor Самойлов Максим
@@ -31,7 +33,7 @@ public interface CreateAnimalService {
                 pet.setName(Name.randomName());
                 pet.setCost(pet.cost[rand.nextInt(pet.cost.length)]);
                 pet.setCharacter(CharacterPet.randomCharacterPet());
-                pet.setBirthDate(pet.getRandomDate());
+                pet.setBirthDate(getRandomDate());
 
                 System.out.print(i + " | ");
                 System.out.println(pet);
@@ -41,7 +43,7 @@ public interface CreateAnimalService {
                 predator.setName(Name.randomName());
                 predator.setCost(predator.cost[rand.nextInt(predator.cost.length)]);
                 predator.setCharacter(CharacterPredator.randomCharacterPredator());
-                predator.setBirthDate(pet.getRandomDate());
+                predator.setBirthDate(getRandomDate());
 
                 System.out.print(i + " | ");
                 System.out.println(predator);
