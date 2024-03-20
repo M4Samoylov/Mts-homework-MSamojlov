@@ -16,11 +16,10 @@ public class HwCollections {
 
         List<AbstractAnimal> animals = createAnimalServiceImpl.createListAnimals(20);
 
-//        animalRepository.findLeapYearNames(animals);
-//        animalRepository.findOlderAnimal(animals, 10);
-//        animalRepository.findDuplicate(animals);
-//        animalRepository.findOldAndExpensive(animals);
-        animalRepository.findMinConstAnimals(animals);
+        animalRepository.findLeapYearNames(animals);
+        animalRepository.findOlderAnimal(animals, 10);
+        animalRepository.findDuplicate(animals);
+        animalRepository.findOldAndExpensive(animals);
 
     }
 }
