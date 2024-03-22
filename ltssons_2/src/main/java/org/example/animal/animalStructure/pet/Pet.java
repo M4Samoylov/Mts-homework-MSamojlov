@@ -1,6 +1,6 @@
-package org.example.animal.pet;
+package org.example.animal.animalStructure.pet;
 
-import org.example.animal.AbstractAnimal;
+import org.example.animal.animalStructure.AbstractAnimal;
 
 /**
  * Класс для Animal сущности Pet

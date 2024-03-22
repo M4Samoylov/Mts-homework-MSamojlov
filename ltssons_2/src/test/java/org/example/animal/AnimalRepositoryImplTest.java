@@ -1,10 +1,12 @@
 package org.example.animal;
 
 import org.example.animal.Exception.InvalidAnimalException;
-import org.example.animal.pet.Cat;
-import org.example.animal.pet.Dog;
-import org.example.animal.predator.Fox;
-import org.example.animal.predator.Shark;
+import org.example.animal.animalStructure.AbstractAnimal;
+import org.example.animal.animalStructure.pet.Cat;
+import org.example.animal.animalStructure.pet.Dog;
+import org.example.animal.animalStructure.predator.Fox;
+import org.example.animal.animalStructure.predator.Shark;
+import org.example.animal.repository.impl.AnimalRepositoryImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,8 +1,8 @@
-package org.example.animal;
+package org.example.animal.service;
 
 import org.example.animal.enumAnimal.*;
-import org.example.animal.pet.Pet;
-import org.example.animal.predator.Predator;
+import org.example.animal.animalStructure.pet.Pet;
+import org.example.animal.animalStructure.predator.Predator;
 
 import java.util.Random;
 

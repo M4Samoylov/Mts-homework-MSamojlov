@@ -1,4 +1,4 @@
-package org.example.animal.pet;
+package org.example.animal.animalStructure.pet;
 
 /**
  * Класс для Animal сущности Dog

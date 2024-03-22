@@ -1,4 +1,4 @@
-package org.example.animal;
+package org.example.animal.animalStructure;
 
 import org.example.animal.helpers.LocalDateFormatter;
 

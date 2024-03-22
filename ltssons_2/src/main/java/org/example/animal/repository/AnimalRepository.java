@@ -1,5 +1,6 @@
-package org.example.animal;
+package org.example.animal.repository;
 
+import org.example.animal.animalStructure.AbstractAnimal;
 import org.example.animal.Exception.InvalidAnimalException;
 
 import java.time.LocalDate;

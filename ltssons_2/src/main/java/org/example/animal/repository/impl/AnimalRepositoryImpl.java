@@ -1,6 +1,8 @@
-package org.example.animal;
+package org.example.animal.repository.impl;
 
+import org.example.animal.animalStructure.AbstractAnimal;
 import org.example.animal.Exception.InvalidAnimalException;
+import org.example.animal.repository.AnimalRepository;
 
 import java.time.LocalDate;
 import java.util.Comparator;
@@ -17,6 +19,8 @@ import static java.util.stream.Collectors.groupingBy;
  * @autor Самойлов Максим
  */
 public class AnimalRepositoryImpl implements AnimalRepository {
+
+    final private int EXPECTED_AGE = 5;
 
     /**
      * Функция для формирования Map животных рождённых в високосный год.
@@ -110,7 +114,7 @@ public class AnimalRepositoryImpl implements AnimalRepository {
         double averageCost = getAverageCost(animals);
 
         List<AbstractAnimal> result = animals.stream()
-                .filter(p -> p.getAge() > 5 && p.getCost() > averageCost)
+                .filter(p -> p.getAge() > EXPECTED_AGE && p.getCost() > averageCost)
                 .sorted(Comparator.comparing(AbstractAnimal::getBirthDate))
                 .collect(Collectors.toList());
 

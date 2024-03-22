@@ -1,7 +1,7 @@
 package org.example;
 
-import org.example.animal.CreateAnimalService;
-import org.example.animal.CreateAnimalServiceImpl;
+import org.example.animal.service.CreateAnimalService;
+import org.example.animal.service.impl.CreateAnimalServiceImpl;
 
 public class Main {
 

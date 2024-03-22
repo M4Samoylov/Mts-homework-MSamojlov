@@ -1,6 +1,6 @@
-package org.example.animal.predator;
+package org.example.animal.animalStructure.predator;
 
-import org.example.animal.AbstractAnimal;
+import org.example.animal.animalStructure.AbstractAnimal;
 
 /**
  * Класс для Animal сущности Predator

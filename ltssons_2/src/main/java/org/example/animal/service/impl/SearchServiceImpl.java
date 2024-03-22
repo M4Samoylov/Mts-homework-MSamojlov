@@ -1,7 +1,9 @@
-package org.example.animal;
+package org.example.animal.service.impl;
 
+import org.example.animal.animalStructure.AbstractAnimal;
 import org.example.animal.Exception.InvalidAnimalBirthDateException;
 import org.example.animal.Exception.InvalidAnimalException;
+import org.example.animal.service.SearchService;
 
 import java.time.LocalDate;
 import java.time.Year;
