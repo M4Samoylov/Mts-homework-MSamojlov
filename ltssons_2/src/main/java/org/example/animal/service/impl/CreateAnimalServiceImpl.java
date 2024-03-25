@@ -1,13 +1,15 @@
-package org.example.animal;
+package org.example.animal.service.impl;
 
+import org.example.animal.animalStructure.AbstractAnimal;
+import org.example.animal.service.CreateAnimalService;
 import org.example.animal.enumAnimal.*;
-import org.example.animal.pet.Cat;
-import org.example.animal.pet.Dog;
-import org.example.animal.pet.Pet;
-import org.example.animal.predator.Fox;
-import org.example.animal.predator.Predator;
-import org.example.animal.predator.Shark;
-import org.example.animal.predator.Wolf;
+import org.example.animal.animalStructure.pet.Cat;
+import org.example.animal.animalStructure.pet.Dog;
+import org.example.animal.animalStructure.pet.Pet;
+import org.example.animal.animalStructure.predator.Fox;
+import org.example.animal.animalStructure.predator.Predator;
+import org.example.animal.animalStructure.predator.Shark;
+import org.example.animal.animalStructure.predator.Wolf;
 
 import java.util.*;
 

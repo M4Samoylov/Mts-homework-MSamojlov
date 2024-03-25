@@ -1,8 +1,12 @@
 package org.example.animal;
 
 import org.example.animal.Exception.InvalidAnimalException;
-import org.example.animal.pet.Cat;
-import org.example.animal.pet.Dog;
+import org.example.animal.animalStructure.AbstractAnimal;
+import org.example.animal.animalStructure.pet.Cat;
+import org.example.animal.animalStructure.pet.Dog;
+import org.example.animal.animalStructure.predator.Fox;
+import org.example.animal.animalStructure.predator.Shark;
+import org.example.animal.repository.impl.AnimalRepositoryImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -213,6 +217,9 @@ class AnimalRepositoryImplTest {
         cat.setBirthDate(LocalDate.of(2000, 1, 1));
         animals.add(cat);
 
+        List<AbstractAnimal> cats = new ArrayList<>();
+        cats.add(cat);
+
         dog.setBreed("Гончая");
         dog.setName("Мухтар");
         dog.setCost(12.5);
@@ -220,9 +227,12 @@ class AnimalRepositoryImplTest {
         dog.setBirthDate(LocalDate.of(2000, 1, 1));
         animals.add(dog);
 
-        Map<String, Integer> expected = new HashMap<>(Map.of(
-                Cat.class.getSimpleName(), 1,
-                Dog.class.getSimpleName(), 1));
+        List<AbstractAnimal> dogs = new ArrayList<>();
+        dogs.add(dog);
+
+        Map<String, List<AbstractAnimal>> expected = new HashMap<>(Map.of(
+                Cat.class.getSimpleName(), cats,
+                Dog.class.getSimpleName(), dogs));
 
         assertEquals(expected, animalRepository.findDuplicate(animals));
     }
@@ -232,6 +242,7 @@ class AnimalRepositoryImplTest {
     void checkOneTypeAnimalFindDuplicate() throws InvalidAnimalException {
         List<AbstractAnimal> animals = new ArrayList<>();
         Cat cat = new Cat();
+        List<AbstractAnimal> cats = new ArrayList<>();
 
         cat.setBreed("Британская");
         cat.setName("Мурка");
@@ -239,6 +250,7 @@ class AnimalRepositoryImplTest {
         cat.setCharacter("Игривый");
         cat.setBirthDate(LocalDate.of(2000, 1, 1));
         animals.add(cat);
+        cats.add(cat);
 
         cat.setBreed("Длинношёрстная");
         cat.setName("Кузя");
@@ -247,10 +259,172 @@ class AnimalRepositoryImplTest {
         cat.setBirthDate(LocalDate.of(2000, 1, 1));
         animals.add(cat);
 
-        Map<String, Integer> expected = new HashMap<>(Map.of(
-                Cat.class.getSimpleName(), 2));
+        cats.add(cat);
+
+        Map<String, List<AbstractAnimal>> expected = new HashMap<>(Map.of(
+                Cat.class.getSimpleName(), cats));
 
         assertEquals(expected, animalRepository.findDuplicate(animals));
+    }
+
+    @Test
+    @DisplayName("findAverageAge, передаётся List из 2 объектов - , Позитивный тест")
+    void checkFindAverageAge() throws InvalidAnimalException {
+        List<AbstractAnimal> animals = new ArrayList<>();
+        Cat cat = new Cat();
+        Dog dog = new Dog();
+
+        cat.setBreed("Британская");
+        cat.setName("Мурка");
+        cat.setCost(10.0);
+        cat.setCharacter("Игривый");
+        cat.setBirthDate(LocalDate.of(2000, 1, 1));
+        animals.add(cat);
+
+        dog.setBreed("Гончая");
+        dog.setName("Мухтар");
+        dog.setCost(20.0);
+        dog.setCharacter("Игривый");
+        dog.setBirthDate(LocalDate.of(2005, 1, 1));
+        animals.add(dog);
+
+        double expected = (double) (cat.getAge() + dog.getAge()) / 2;
+
+        assertEquals(expected, animalRepository.findAverageAge(animals));
+    }
+
+    @Test
+    @DisplayName("findOldAndExpensive, передаётся List из 2 объектов, возвращается List с 1 записью, Фильтр по цене, Позитивный тест")
+    void checkFindOldAndExpensiveFilterCost() throws InvalidAnimalException {
+        List<AbstractAnimal> animals = new ArrayList<>();
+        Cat cat = new Cat();
+        Dog dog = new Dog();
+
+        cat.setBreed("Британская");
+        cat.setName("Мурка");
+        cat.setCost(10.0);
+        cat.setCharacter("Игривый");
+        cat.setBirthDate(LocalDate.of(2000, 1, 1));
+        animals.add(cat);
+
+        dog.setBreed("Гончая");
+        dog.setName("Мухтар");
+        dog.setCost(20.0);
+        dog.setCharacter("Игривый");
+        dog.setBirthDate(LocalDate.of(2005, 1, 1));
+        animals.add(dog);
+
+        List<AbstractAnimal> expected = new ArrayList<>(List.of(dog));
+
+        assertEquals(expected, animalRepository.findOldAndExpensive(animals));
+    }
+
+    @Test
+    @DisplayName("findOldAndExpensive, передаётся List из 3 объектов, возвращается List с 1 записью, Фильтр по возрасту + по цене, Позитивный тест")
+    void checkFindOldAndExpensiveFilterAge() throws InvalidAnimalException {
+        List<AbstractAnimal> animals = new ArrayList<>();
+        Cat cat = new Cat();
+        Dog dog = new Dog();
+        Fox fox = new Fox();
+
+        fox.setBreed("Шотландская");
+        fox.setName("Муся");
+        fox.setCost(3.0);
+        fox.setCharacter("Весёлая");
+        fox.setBirthDate(LocalDate.of(2000, 1, 1));
+        animals.add(fox);
+
+        cat.setBreed("Британская");
+        cat.setName("Мурка");
+        cat.setCost(25.0);
+        cat.setCharacter("Игривый");
+        cat.setBirthDate(LocalDate.of(LocalDate.now().getYear() - 3, 1, 1));
+        animals.add(cat);
+
+        dog.setBreed("Гончая");
+        dog.setName("Мухтар");
+        dog.setCost(20.0);
+        dog.setCharacter("Игривый");
+        dog.setBirthDate(LocalDate.of(2000, 1, 1));
+        animals.add(dog);
+
+        List<AbstractAnimal> expected = new ArrayList<>(List.of(dog));
+
+        assertEquals(expected, animalRepository.findOldAndExpensive(animals));
+    }
+
+    @Test
+    @DisplayName("findOldAndExpensive, передаётся List из 3 объектов, возвращается List с без записей, Позитивный тест")
+    void checkFindOldAndExpensiveReturnEmpty() {
+        List<AbstractAnimal> animals = new ArrayList<>();
+        Cat cat = new Cat();
+        Dog dog = new Dog();
+        Fox fox = new Fox();
+
+        fox.setBreed("Шотландская");
+        fox.setName("Муся");
+        fox.setCost(20.0);
+        fox.setCharacter("Весёлая");
+        fox.setBirthDate(LocalDate.of(LocalDate.now().getYear() - 1, 1, 1));
+        animals.add(fox);
+
+        cat.setBreed("Британская");
+        cat.setName("Мурка");
+        cat.setCost(20.0);
+        cat.setCharacter("Игривый");
+        cat.setBirthDate(LocalDate.of(LocalDate.now().getYear() - 2, 1, 1));
+        animals.add(cat);
+
+        dog.setBreed("Гончая");
+        dog.setName("Мухтар");
+        dog.setCost(20.0);
+        dog.setCharacter("Игривый");
+        dog.setBirthDate(LocalDate.of(LocalDate.now().getYear() - 4, 1, 1));
+        animals.add(dog);
+
+        assertThrows(RuntimeException.class, () -> animalRepository.findOldAndExpensive(animals));
+    }
+
+    @Test
+    @DisplayName("findMinConstAnimals, передаётся List из 4 объектов, возвращается List с 3 записями, Позитивный тест")
+    void checkFindMinConstAnimalsFilterCost() throws InvalidAnimalException {
+        List<AbstractAnimal> animals = new ArrayList<>();
+        Cat cat = new Cat();
+        Dog dog = new Dog();
+        Fox fox = new Fox();
+        Shark shark = new Shark();
+
+        fox.setBreed("Шотландская");
+        fox.setName("Амур");
+        fox.setCost(1.0);
+        fox.setCharacter("Весёлая");
+        fox.setBirthDate(LocalDate.of(2000, 1, 1));
+        animals.add(fox);
+
+        cat.setBreed("Британская");
+        cat.setName("Британ");
+        cat.setCost(2.0);
+        cat.setCharacter("Игривый");
+        cat.setBirthDate(LocalDate.of(2000, 1, 1));
+        animals.add(cat);
+
+        dog.setBreed("Гончая");
+        dog.setName("Вихрь");
+        dog.setCost(3.0);
+        dog.setCharacter("Игривый");
+        dog.setBirthDate(LocalDate.of(2000, 1, 1));
+        animals.add(dog);
+
+        shark.setBreed("Лысая");
+        shark.setName("Главный");
+        shark.setCost(4.0);
+        shark.setCharacter("Хитрая");
+        shark.setBirthDate(LocalDate.of(2000, 1, 1));
+        animals.add(shark);
+
+        List<String> expected = new ArrayList<>(List.of(dog.getName(), cat.getName(), fox.getName()));
+
+        assertEquals(expected, animalRepository.findMinConstAnimals(animals));
     }
 
     @Test
@@ -269,5 +443,47 @@ class AnimalRepositoryImplTest {
     @DisplayName("findDuplicate, передаваемый объект List<AbstractAnimal> = null, Негативный тест")
     void checkNullListFindDuplicate() {
         assertThrows(InvalidAnimalException.class, () -> animalRepository.findDuplicate(null));
+    }
+
+    @Test
+    @DisplayName("findAverageAge, передаётся List<AbstractAnimal> из 2 объектов, 1 объект с null возраста, Негативный тест")
+    void checkNullDateFindAverageAge() throws RuntimeException {
+        List<AbstractAnimal> animals = new ArrayList<>();
+        Cat cat = new Cat();
+        Dog dog = new Dog();
+
+        cat.setBreed("Британская");
+        cat.setName("Мурка");
+        cat.setCost(12.5);
+        cat.setCharacter("Игривый");
+        cat.setBirthDate(LocalDate.of(2000, 1, 1));
+        animals.add(cat);
+
+        dog.setBreed("Гончая");
+        dog.setName("Мухтар");
+        dog.setCost(12.5);
+        dog.setCharacter("Игривый");
+        dog.setBirthDate(null);
+        animals.add(dog);
+
+        assertThrows(RuntimeException.class, () -> animalRepository.findAverageAge(animals));
+    }
+
+    @Test
+    @DisplayName("findAverageAge, передаваемый объект List<AbstractAnimal> = null, Негативный тест")
+    void checkNullListFindAverageAge() {
+        assertThrows(InvalidAnimalException.class, () -> animalRepository.findAverageAge(null));
+    }
+
+    @Test
+    @DisplayName("findOldAndExpensive, передаваемый объект List<AbstractAnimal> = null, Негативный тест")
+    void checkNullListFindOldAndExpensive() {
+        assertThrows(InvalidAnimalException.class, () -> animalRepository.findOldAndExpensive(null));
+    }
+
+    @Test
+    @DisplayName("findMinConstAnimals, передаваемый объект List<AbstractAnimal> = null, Негативный тест")
+    void checkNullListFindMinConstAnimals() {
+        assertThrows(InvalidAnimalException.class, () -> animalRepository.findMinConstAnimals(null));
     }
 }

@@ -1,7 +1,6 @@
-package org.example.animal;
+package org.example.animal.animalStructure;
 
 import org.example.animal.helpers.LocalDateFormatter;
-import org.example.animal.helpers.RandomLocalDate;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -11,7 +10,7 @@ import java.time.Period;
  * @autor Самойлов Максим
  * @version 1.1
  */
-public abstract class AbstractAnimal extends RandomLocalDate implements Animal {
+public abstract class AbstractAnimal implements Animal {
 
     protected String breed; //порода
     protected String name; // имя

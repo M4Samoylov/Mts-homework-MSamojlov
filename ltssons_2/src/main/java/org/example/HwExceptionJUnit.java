@@ -1,13 +1,13 @@
 package org.example;
 
-import org.example.animal.AbstractAnimal;
-import org.example.animal.CreateAnimalServiceImpl;
+import org.example.animal.animalStructure.AbstractAnimal;
+import org.example.animal.service.impl.CreateAnimalServiceImpl;
 import org.example.animal.Exception.InvalidAnimalBirthDateException;
 import org.example.animal.Exception.InvalidAnimalException;
-import org.example.animal.SearchServiceImpl;
+import org.example.animal.service.impl.SearchServiceImpl;
 import org.example.animal.enumAnimal.TypeAnimal;
-import org.example.animal.pet.Pet;
-import org.example.animal.predator.Predator;
+import org.example.animal.animalStructure.pet.Pet;
+import org.example.animal.animalStructure.predator.Predator;
 
 
 public class HwExceptionJUnit {
